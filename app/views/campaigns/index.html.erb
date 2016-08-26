@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div class="row">
+	<div class="col-xs-0 col-md-2"></div>
+	<div class="col-xs-12 col-md-4">
+	<%if flash[:errors]%>
+			<% flash[:errors].each do |e| %>
+				<%=e%>
+				<%end%>
+			<% end %>
+		<h3>For you, <strong><%=current_user.name%></strong>, adventure awaits!</h3>
+		<a href="/users/<%= current_user.id %>/edit">Edit Profile</a>
+	</div>
+	<div class="col-xs-0 col-md-2"></div>
+</div>
+<div class="h-divider"></div>
+<div class="row">
+	<div class="col-xs-0 col-md-2"></div>
+	<div class="col-xs-12 col-md-4">
+	<%if @campaigns %>
+	<h4>Select a campaign</h4>
+		<table class="table">
+		<thead>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Delete?</th>
+		</thead>
+		<tbody>
+		<% @campaigns.each do |campaign| %>
+			<tr>
+				<td><a href="/campaigns/<%=campaign.id%>"><%=campaign.name%></a></td>
+				<td><%=campaign.description%></td>
+				<td>
+					<form action="/campaigns/<%= campaign.id %>" method="post">
+						<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+						<input type="hidden" name="_method" value="delete">
+						<input type="submit" value="Delete">	
+					</form>
+				</td>
+			</tr>
+		<%end%>
+		</tbody>
+		</table>
+	<%end%>
+	</div>
+	<div class="col-xs-12 col-md-4">
+	<h4>Create a new campaign</h4>
+	<form action="/campaigns" method="post">
+		<label><input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'></label>
+		<label>Name: <input type="text" name="campaign[name]"></label>
+		<label>Description: <input type="text" name="campaign[description]"></label>
+		<label><input type='hidden' name='campaign[user_id]' value='<%= current_user.id %>'></label>
+		<label><input type="submit" value="Create"></label>
+	</form>
+	</div>
+</div>
+</body>
+</html>

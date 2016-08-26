@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+Change your stats?
+	<form action="/players/<%=@player.id%>" method="post">
+		<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+		<input type='hidden' name='_method' value='patch'>
+		Name:<input type="name" name="player[name]">
+		Description<input type="textarea" name="player[notes]">
+		Bonus<input type="number" name="player[bonus]">
+		<input type="submit" value="Update">
+	</form>
+	<form action='/players/<%=@player.id%>' method='post'>
+	<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+	<input type='hidden' name='_method' value='delete'>
+  	<input type='submit' value='Delete Player'>
+	</form>
+</body>
+</html>

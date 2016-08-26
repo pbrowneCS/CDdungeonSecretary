@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DungeonSecretary</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container">
+<% if flash[:errors] %>
+  <% flash[:errors].each do |e| %>
+    <p><%= e %></p>
+  <% end %>
+<% end %>
+<% if current_user %>
+<nav class="navbar navbar-default dungeonNav">
+  <div class="container-fluid">
+  <ul class="nav navbar-nav navbar-right">
+    <li class="logOutButton" ><a href="/sessions/<%=current_user.id%>" data-method='delete'>Log Out</a></li>
+  </ul>
+  </div>
+</nav>
+<% end %>
+<%= yield %>
+</div>
+</body>
+</html>

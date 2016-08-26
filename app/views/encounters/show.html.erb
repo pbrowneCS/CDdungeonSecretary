@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div class="row">
+	<div class="col-xs-2"></div>
+	<div class="col-xs-4">
+		Return to: <a href="/campaigns/<%=@encounter.campaign_id%>"><button><%=@encounter.campaign.name%></button></a>
+	</div>
+	<div class="col-xs-2"></div>
+</div>
+<div class="h-divider"></div>
+<div class="row">
+	<div class="col-xs-2"></div>
+	<div class="col-xs-4">
+		<h3><%=@encounter.name%></h3>
+		<%if @enemies%>
+		<%@enemies.each do |enemy|%>
+		Creature: <%=enemy.name%> Notes: <%=enemy.notes%>
+		<a href="/enemies/<%=enemy.id%>" data-method="delete"><button>Delete</button></a>
+		<p></p>
+		<%end%>
+		<%end%>
+	</div>
+	<div class="col-xs-4">
+		<h4>Create new Enemy</h4>
+			<form action="/enemies" method="post">
+				<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+				<label>Name:<input type="text" name="enemy[name]"></label>
+				<label>Notes:<input type="text" name="enemy[notes]"></label>
+				<label>Bonus:<input type="number" name="enemy[bonus]"></label>
+				<input type='hidden' name='enemy[encounter_id]' value='<%= @encounter.id  %>'>
+				<label><input type="submit" value="Create"></label>
+			</form>
+	</div>
+	<div class="col-xs-2"></div>
+</div>
+<div class="h-divider"></div>
+<div class="row">
+	<div class="col-xs-2"></div>
+	<div class="col-xs-4">
+		<%if @players%>
+		<h4>Select players for encounter: <strong><%=@encounter.name%></strong></h4>
+
+		<%@players.each do |player|%>
+		<form action="/units" method="post">
+		<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+		<input type="checkbox" name="<%=player.name%>" value="<%=player.name%>" checked="true"><%=player.name%></input>
+		<p></p>
+		<%end%>
+		<%end%>
+		<input type="hidden" name="encounter_id" value="<%=@encounter.id%>" >
+		<input type="submit" value="Submit">
+		</form>
+	</div>
+	<div class="col-xs-2"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script>
+		$(document).ready(function(){
+			var count = 1;
+			var deactivatedCount = 0;
+			function nextTurnAction(){
+				if(count >= <%=@units.length%>){
+					count = 0;
+				}
+				count++;
+				$(".unit").each(function(){
+					$(this).addClass("notturn");
+					$(this).removeClass("currentturn");
+				});
+				active = $("body").find('#'+count);
+				while (active.hasClass("deactivated")){
+					if(count >= <%=@units.length%>){
+					count = 1;
+					}
+					count++;
+					active = $("body").find('#'+count);
+				}
+				active.removeClass("notturn");
+				active.addClass("currentturn");
+				activeButton.addClass("shownTurnButton");
+				activeButton.removeClass("hiddenTurnButton");
+			}
+			$(".unit").each(function(){
+				$(this).addClass("notturn");
+				$(this).removeClass("currentturn");
+			});
+			active = $("body").find('#'+count);
+			active.removeClass("notturn");
+			active.addClass("currentturn");
+			$(".turnbutton").on("click", function(){nextTurnAction()});
+			$(".deactivate").on("click", function(){
+				$(this).parent().removeClass("currentturn");
+				$(this).parent().removeClass("notturn");
+				$(this).parent().addClass("deactivated");
+				$(this).parent().removeClass("unit");
+				$(this).toggle();
+				$(this).siblings(".activate").toggle();
+				deactivatedCount++;
+			});
+			$(".activate").on("click", function(){
+				$(this).parent().addClass("notturn");
+				$(this).parent().addClass("unit");
+				$(this).parent().removeClass("deactivated");
+				$(this).toggle();
+				$(this).siblings(".deactivate").toggle();
+				deactivatedCount--;
+			});
+		});
+	</script>
+</head>
+<body>
+<button class='turnbutton'><strong>NEXT TURN</strong></button> - 
+Return to: <a href="/campaigns/<%=@camp["id"]%>"><button><%=@camp["name"]%></button></a>
+<hr>
+<%@units.each do |unit|%>
+	<div class="unit" id="<%=unit["order"]%>">
+		<p>Name: <%=unit["name"]%></p>
+		<p>Initiative: <%=unit["initiative"]%></p>
+		<button class='deactivate'>Deactivate</button>
+		<button class='activate'>Activate</button>
+	</div>
+<%end%>
+<br>
+<button class='turnbutton'><strong>NEXT TURN</strong></button>
+</body>
+</html>

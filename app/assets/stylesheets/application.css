@@ -1,0 +1,179 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+html{
+	background-color: #800000;
+}
+
+body{
+	background-color: #800000;
+}
+.headspace{
+	height: 69px;
+	display: block;
+}
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+ 	.middle{font-size: 1em;}
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+	.middle{font-size: 1em;}
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+	.middle{font-size: 1.5em;}
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+	.middle{font-size: 2em;}
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+	.middle{font-size: 2em;}
+ 	.side{display: none}
+}
+/*@media only screen and (min-width: 480px) and (max-width: 767px){
+    .middle{font-size: 3em;}
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .middle{font-size: 1.5em;}
+}*/
+
+label{
+	display: inline-block;
+	float: left;
+	clear: left;
+	width: 150px;
+	text-align: left;
+}
+
+div{
+	display: block;
+}
+
+.h-divider{
+ margin-top:5px;
+ margin-bottom:5px;
+ height:1px;
+ width:100%;
+ border-top:1px solid gray;
+}
+
+
+
+.container{
+	min-height: 100vh;
+	background: linear-gradient(to right,#e2bb6c, #f7e0a7, #e2bb6c);
+}
+.side{
+	background-color: #800000;
+	height: 100vh;
+	border: 1px solid black;
+}
+.middle{
+	background: linear-gradient(to right,#e2bb6c, #f7e0a7, #e2bb6c);
+	height: 100vh;
+}
+
+.dungeonNav{
+	background: linear-gradient(to bottom right, #efce5a, #977619);
+	border: 1px solid black;
+	border-top: none;
+}
+
+.nav .navbar-default .navbar-nav .navbar-right .navbar > li > a{
+	color: #000000;
+}
+
+a {
+    color: #C00000; 
+}
+
+a button{
+	color: black;
+}
+
+
+.footer{
+	height: 50px;
+	background-color: black;
+}
+
+
+
+/* reg page */
+#loginBox{
+	border: black solid 1px;
+	height: 300px;
+	padding: 0px 0px 0px 60px;
+	background: linear-gradient(to bottom right, #efce5a, #977619);
+}
+
+#regBox{
+	border: black solid 1px;
+	height: 300px;
+	padding: 0px 0px 0px 60px;
+	background: linear-gradient(to bottom right, #efce5a, #977619);
+}
+
+.title{
+	text-align: center;
+	border: black solid 1px;
+	margin: 10px 0px 10px 0px;
+	background: linear-gradient(to bottom right, #efce5a, #977619);
+}
+
+/* turn order */
+
+.activate{
+	display: none;
+}
+
+.deactivate{
+
+}
+
+.notturn{
+	width: 150px;
+	border: solid black 1px;
+	background: linear-gradient(to bottom right, #a6a6a6, #595959);
+	
+}
+
+.currentturn{
+	width: 200px;
+	background: linear-gradient(to bottom right, #efce5a, #977619);
+	border: solid black 1px;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.turnbutton{
+	font-size: 20px;
+}
+
+.hiddenTurnButton{
+	display: none;
+}
+
+.shownTurnButton{
+
+}

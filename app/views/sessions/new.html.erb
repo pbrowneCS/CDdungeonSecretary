@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div class="title">
+	<h2>Dungeon Secretary!</h2>
+</div>
+<div class="row">
+	<div class="col-xs-0 col-md-2"></div>
+	<div class="col-xs-12 col-md-4">
+		<div id="loginBox">
+			<h3>Login</h3>
+			<form action="/sessions" method="post">
+			<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+			<label>Name:<input type="name" name="user[name]"></label>
+			<label>Password:<input type="password" name="user[password]"></label>
+			<label><input type="submit" value="Log In"></label>
+			</form>
+		</div>
+	</div>
+	<div class="col-xs-12 col-md-4">
+		<div id="regBox">
+		<h3>Register</h3>
+		<form action="/users" method="post">
+			<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+			<label>Name:<input type="text" name="user[name]"></label>
+			<label>Password:<input type="password" name="user[password]"></label>
+			<label>Confirm Password:<input type="password" name="user[password_confirmation]"></label>
+			<label><input type="submit" value="Register"></label>
+			</form>
+		</div>
+	</div>
+	<div class="col-xs-0 col-md-2"></div>
+</div>
+
+</body>
+</html>

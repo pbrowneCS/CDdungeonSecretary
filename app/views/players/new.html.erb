@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div class="container">
+	<form action="/players" method="post">
+		<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+		Name<input type="text" name="player[name]">
+		Description<input type="textarea" name="player[notes]">
+		Bonus<input type="number" name="player[bonus]">
+		<input type="submit" value="Create Player">
+	</form>
+	</div>
+</body>
+</html>

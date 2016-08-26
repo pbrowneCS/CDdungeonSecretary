@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h3>Hello <%=@user.name%></h3>
+Return to: <a href="/campaigns"><button>Campaign List</button></a>
+<div class="h-divider"></div>
+<h4>Change your name?</h4>
+	<form action="/users/<%=current_user.id%>" method="post">
+		<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+		<input type='hidden' name='_method' value='patch'>
+		Name:<input type="name" name="user[name]" value="<%=@user.name%>">	
+		<input type="submit" value="Update">
+	</form>
+<h4>Delete Account?</h4>
+	<form action='/users/<%=current_user.id%>' method='post'>
+	<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+	<input type='hidden' name='_method' value='delete'>
+  	<input type='submit' value='Delete Account'>
+	</form>
+</body>
+</html>

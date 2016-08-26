@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div class="row">
+	<div class="col-xs-2"></div>
+	<div class="col-xs-4">
+		Return to: <a href="/campaigns"><button>Campaign List</button></a>
+	</div>
+	<div class="col-xs-4"></div>
+</div>
+<div class="h-divider"></div>
+<div class="row">
+	<div class="col-xs-2"></div>
+	<div class="col-xs-4">
+		<h4>Encounters of: <strong><%=@campaign.name%></strong></h4>
+		<table class="table">
+			<thead>
+				<th>Name</th>
+				<th>Delete?</th>
+			</thead>
+			<tbody>
+				<%@encounters.each do |encounter|%>
+				<tr>
+					<td><a href="/encounters/<%=encounter.id%>"><%=encounter.name%></a></td>
+					<td><form action="/encounters/<%=encounter.id%>" method="post">
+							<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+							<input type="hidden" name="_method" value="delete">
+							<input type="submit" value="Delete">
+					</form><td>
+				</tr>
+				<%end%>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-xs-4">
+		<h4>Create new Encounter</h4>
+		<form action="/encounters" method="post">
+			<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+			<label>Name:<input type="text" name="encounter[name]"></label>
+			<label>Description:<input type="text" name="encounter[description]"></label>
+			<label><input type='hidden' name='encounter[campaign_id]' value='<%= @campaign.id  %>'></label>
+			<label><input type="submit" value="Create"></label>
+		</form>
+	</div>
+</div>
+<div class="h-divider"></div>
+<div class="row">
+	<div class="col-xs-2"></div>
+	<div class="col-xs-4">
+	<h4>Players of: <strong><%=@campaign.name%></strong></h4>
+	<%if @players.nil? %>
+		<p>Add a new player!</p>
+	<%else%>
+		<table class="table">
+			<thead>
+				<th>Name</th>
+				<th>Bonus</th>
+				<th>Notes</th>
+				<th>Delete?</th>
+			</thead>
+			<tbody>
+				<%@players.each do |player|%>
+				<tr>
+					<td><a href="/players/<%=player.id%>"><%=player.name%></a></td>
+					<td><%=player.bonus%></td>
+					<td><%=player.notes%></td>
+					<td><a href="/players/<%=player.id%>" data-method="delete"><button>Delete</button></a></td>
+				</tr>
+			</tbody>
+			<%end%>
+		<%end%>
+		</table>
+	</div>
+	<div class="col-xs-4">
+	<h4>Create a new player</h4>
+		<form action="/players" method="post">
+			<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+			<label>Name<input type="text" name="player[name]"></label>
+			<label>Description<input type="textarea" name="player[notes]"></label>
+			<label>Bonus<input type="number" name="player[bonus]"></label>
+			<input type='hidden' name='player[campaign_id]' value='<%= @campaign.id  %>'>
+			<label><input type="submit" value="Create Player"></label>
+		</form>
+	<div class="col-xs-2"></div>
+</div>
+</body>
+</html>
